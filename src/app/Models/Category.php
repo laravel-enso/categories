@@ -9,7 +9,7 @@ class Category extends Model
 {
     use TableCache;
 
-    protected $fillable = ['parent_id', 'name'];
+    protected $fillable = ['id', 'parent_id', 'name'];
 
     public function parent()
     {

@@ -3,7 +3,7 @@
 use LaravelEnso\Migrator\App\Database\Migration;
 use LaravelEnso\Permissions\App\Enums\Types;
 
-class CreateStructureForCategories extends Migration
+class CreateStructureForNewCategories extends Migration
 {
     protected $permissions = [
         ['name' => 'administration.categories.index', 'description' => 'Show index for categories', 'type' => Types::Read, 'is_default' => false],

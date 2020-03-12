@@ -28,6 +28,12 @@ class AppServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/client/src/js' => base_path('client/src/js'),
         ], 'categories-assets');
+
+        $this->publishes([
+            __DIR__.'/database/factories' => database_path('factories'),
+        ], ['categories-factories', 'enso-factories']);
+
+        return $this;
     }
 
     public function register()
