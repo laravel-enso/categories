@@ -2,9 +2,9 @@
 
 namespace LaravelEnso\Categories\App\Http\Controllers;
 
-use LaravelEnso\Categories\App\Models\Category;
 use Illuminate\Routing\Controller;
 use LaravelEnso\Categories\App\Forms\Builders\CategoryForm;
+use LaravelEnso\Categories\App\Models\Category;
 
 class Edit extends Controller
 {

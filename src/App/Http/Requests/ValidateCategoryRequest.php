@@ -16,7 +16,7 @@ class ValidateCategoryRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255'],
-            'parent_id' => 'nullable|exists:categories,id'
+            'parent_id' => 'nullable|exists:categories,id',
         ];
     }
 

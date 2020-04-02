@@ -2,8 +2,8 @@
 
 namespace LaravelEnso\Categories\App\Tables\Builders;
 
-use LaravelEnso\Categories\App\Models\Category;
 use Illuminate\Database\Eloquent\Builder;
+use LaravelEnso\Categories\App\Models\Category;
 use LaravelEnso\Tables\App\Contracts\Table;
 
 class CategoryTable implements Table

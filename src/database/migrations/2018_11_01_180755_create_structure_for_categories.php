@@ -9,7 +9,6 @@ class CreateStructureForCategories extends Migration
 
         ['name' => 'administration.categories.create', 'description' => 'Create category', 'is_default' => false],
         ['name' => 'administration.categories.store', 'description' => 'Store a new category', 'is_default' => false],
-        ['name' => 'administration.categories.show', 'description' => 'Show category', 'is_default' => false],
         ['name' => 'administration.categories.edit', 'description' => 'Edit category', 'is_default' => false],
         ['name' => 'administration.categories.update', 'description' => 'Update category', 'is_default' => false],
         ['name' => 'administration.categories.destroy', 'description' => 'Delete category', 'is_default' => false],

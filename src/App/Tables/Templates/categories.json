@@ -5,7 +5,6 @@
     "buttons": [
         "excel",
         "create",
-        "show",
         "edit",
         "destroy"
     ],
