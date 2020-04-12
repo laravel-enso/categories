@@ -31,9 +31,4 @@ class AppServiceProvider extends ServiceProvider
 
         return $this;
     }
-
-    public function register()
-    {
-        //
-    }
 }

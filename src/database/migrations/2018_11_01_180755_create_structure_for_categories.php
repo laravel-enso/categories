@@ -15,11 +15,10 @@ class CreateStructureForCategories extends Migration
         ['name' => 'administration.categories.initTable', 'description' => 'Init table for categories', 'is_default' => false],
         ['name' => 'administration.categories.tableData', 'description' => 'Get table data for categories', 'is_default' => false],
         ['name' => 'administration.categories.exportExcel', 'description' => 'Export excel for categories', 'is_default' => false],
-        ['name' => 'administration.categories.options', 'description' => 'Get category options for select', 'is_default' => false],
     ];
 
     protected $menu = [
-        'name' => 'Categories', 'icon' => 'swatchbook', 'route' => 'administration.categories.index', 'order_index' => 90, 'has_children' => false,
+        'name' => 'Categories', 'icon' => 'tags', 'route' => 'administration.categories.index', 'order_index' => 90, 'has_children' => false,
     ];
 
     protected $parentMenu = 'Administration';

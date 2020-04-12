@@ -2,13 +2,13 @@
 
 namespace LaravelEnso\Categories\App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use LaravelEnso\Categories\App\Services\TreeBuilder;
 
 class Index extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke()
     {
-        //
+        return (new TreeBuilder())->handle();
     }
 }
