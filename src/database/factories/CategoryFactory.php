@@ -5,5 +5,5 @@ use LaravelEnso\Categories\App\Models\Category;
 
 $factory->define(Category::class, fn (Faker $faker) => [
     'parent_id' => null,
-    'name' => $faker->word,
+    'name' => $faker->unique()->word,
 ]);
