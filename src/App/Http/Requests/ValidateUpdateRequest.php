@@ -4,9 +4,12 @@ namespace LaravelEnso\Categories\App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use LaravelEnso\Categories\App\Models\Category;
+use LaravelEnso\Helpers\App\Traits\MapsRequestKeys;
 
-class ValidateCategoryRequest extends FormRequest
+class ValidateUpdateRequest extends FormRequest
 {
+    use MapsRequestKeys;
+
     public function authorize()
     {
         return true;
@@ -16,7 +19,6 @@ class ValidateCategoryRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255'],
-            'parent_id' => 'nullable|exists:categories,id',
         ];
     }
 
@@ -24,14 +26,13 @@ class ValidateCategoryRequest extends FormRequest
     {
         $validator->after(function ($validator) {
             $exists = Category::whereName($this->get('name'))
-                ->whereParentId($this->get('parent_id'))
-                ->where('id', '!=', optional($this->route('category'))->id)
+                ->whereParentId($this->route('category')->parent_id)
+                ->where('id', '<>', $this->route('category')->id)
                 ->exists();
 
             if ($exists) {
                 $validator->errors()
-                    ->add('name', 'This category already exists')
-                    ->add('parent_id', 'This category already exists');
+                    ->add('name', 'duplicate');
             }
         });
     }
