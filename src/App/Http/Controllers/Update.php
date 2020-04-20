@@ -3,15 +3,13 @@
 namespace LaravelEnso\Categories\App\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use LaravelEnso\Categories\App\Http\Requests\ValidateCategoryRequest;
+use LaravelEnso\Categories\App\Http\Requests\ValidateUpdateRequest;
 use LaravelEnso\Categories\App\Models\Category;
 
 class Update extends Controller
 {
-    public function __invoke(ValidateCategoryRequest $request, Category $category)
+    public function __invoke(ValidateUpdateRequest $request, Category $category)
     {
-        $category->update($request->validated());
-
-        return ['message' => __('The category was successfully updated')];
+        $category->update($request->mapped());
     }
 }

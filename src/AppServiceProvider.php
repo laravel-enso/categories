@@ -8,8 +8,8 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->load();
-        $this->publish();
+        $this->load()
+            ->publish();
     }
 
     private function load()
@@ -17,6 +17,8 @@ class AppServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/routes/api.php');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->mergeConfigFrom(__DIR__.'/config/categories.php', 'categories');
+
+        return $this;
     }
 
     private function publish()
@@ -28,7 +30,5 @@ class AppServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/database/factories' => database_path('factories'),
         ], ['categories-factories', 'enso-factories']);
-
-        return $this;
     }
 }

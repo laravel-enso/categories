@@ -17,6 +17,8 @@ class CreateCategoriesTable extends Migration
 
             $table->string('name');
 
+            $table->unsignedInteger('order_index');
+
             $table->timestamps();
 
             $table->unique(['parent_id', 'name']);
