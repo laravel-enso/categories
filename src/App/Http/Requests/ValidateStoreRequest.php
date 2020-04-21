@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use LaravelEnso\Categories\App\Models\Category;
 use LaravelEnso\Helpers\App\Traits\MapsRequestKeys;
 
-class ValidateCreateRequest extends FormRequest
+class ValidateStoreRequest extends FormRequest
 {
     use MapsRequestKeys;
 
@@ -26,16 +26,17 @@ class ValidateCreateRequest extends FormRequest
 
     public function withValidator($validator)
     {
-        $validator->after(function ($validator) {
-            $exists = Category::whereName($this->get('name'))
-                ->whereParentId($this->get('parent_id'))
-                ->where('id', '<>', optional($this->route('category'))->id)
-                ->exists();
+        if ($this->isDuplicate()) {
+            $validator->after(fn ($validator) => $validator
+                ->errors()->add('name', 'duplicate'));
+        }
+    }
 
-            if ($exists) {
-                $validator->errors()
-                    ->add('name', 'duplicate');
-            }
-        });
+    private function isDuplicate(): bool
+    {
+        return Category::whereName($this->get('name'))
+            ->whereParentId($this->get('parentId'))
+            ->where('id', '<>', optional($this->route('category'))->id)
+            ->exists();
     }
 }
