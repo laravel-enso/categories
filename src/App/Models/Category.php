@@ -32,14 +32,20 @@ class Category extends Model
 
     public static function move(int $id, int $orderIndex, ?int $parentId)
     {
-        self::whereId($id)->update([
+        $self = self::find($id);
+
+        $order = $orderIndex >= $this->order_index && $self->parent_id === $parentId
+            ? 'asc'
+            : 'desc';
+
+        $self->update([
             'parent_id' => $parentId,
             'order_index' => $orderIndex,
         ]);
 
         self::whereParentId($parentId)
             ->orderBy('order_index')
-            ->orderByDesc('updated_at')
+            ->orderBy('updated_at', $order)
             ->get()
             ->each(fn ($category, $index) => $category
                 ->update(['order_index' => $index + 1]));
