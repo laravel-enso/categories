@@ -30,15 +30,13 @@ class Category extends Model
         return $query->whereNull('parent_id');
     }
 
-    public static function move(int $id, int $orderIndex, ?int $parentId)
+    public function move(int $orderIndex, ?int $parentId)
     {
-        $self = self::find($id);
-
-        $order = $orderIndex >= $this->order_index && $self->parent_id === $parentId
+        $order = $orderIndex >= $this->order_index && $this->parent_id === $parentId
             ? 'asc'
             : 'desc';
 
-        $self->update([
+        $this->update([
             'parent_id' => $parentId,
             'order_index' => $orderIndex,
         ]);

@@ -8,12 +8,8 @@ use LaravelEnso\Categories\App\Models\Category;
 
 class Move extends Controller
 {
-    public function __invoke(ValidateReorderRequest $request)
+    public function __invoke(ValidateReorderRequest $request, Category $category)
     {
-        Category::move(
-            $request->get('id'),
-            $request->get('newIndex'),
-            $request->get('parentId')
-        );
+        $category->move($request->get('newIndex'), $request->get('parentId'));
     }
 }

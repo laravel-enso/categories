@@ -14,7 +14,6 @@ class ValidateReorderRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|exists:categories,id',
             'parentId' => 'nullable|exists:categories,id',
             'newIndex' => 'required',
         ];
