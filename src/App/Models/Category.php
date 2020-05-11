@@ -30,6 +30,11 @@ class Category extends Model
         return $query->whereNull('parent_id');
     }
 
+    public function scopeHasChildren(Builder $query)
+    {
+        return $query->has('subcategories');
+    }
+
     public function move(int $orderIndex, ?int $parentId)
     {
         $order = $orderIndex >= $this->order_index && $this->parent_id === $parentId
@@ -54,5 +59,10 @@ class Category extends Model
         return self::topLevel()
             ->orderBy('order_index')
             ->with('subcategories')->get();
+    }
+
+    public function isParent()
+    {
+        return $this->subcategories()->count() > 0;
     }
 }
