@@ -11,7 +11,7 @@ class Store extends Controller
 {
     public function __invoke(ValidateStoreRequest $request, Category $category)
     {
-        $category->fill($request->mapped())->save();
+        $category->fill($request->validated())->save();
 
         return ['category' => new Resource($category->load('subcategories'))];
     }

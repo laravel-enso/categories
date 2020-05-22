@@ -10,6 +10,6 @@ class Update extends Controller
 {
     public function __invoke(ValidateUpdateRequest $request, Category $category)
     {
-        $category->update($request->mapped());
+        $category->update($request->validated());
     }
 }
