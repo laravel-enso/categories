@@ -4,12 +4,9 @@ namespace LaravelEnso\Categories\App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use LaravelEnso\Categories\App\Models\Category;
-use LaravelEnso\Helpers\App\Traits\MapsRequestKeys;
 
 class ValidateUpdateRequest extends FormRequest
 {
-    use MapsRequestKeys;
-
     public function authorize()
     {
         return true;

@@ -19,8 +19,8 @@ class ValidateStoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255'],
-            'order_index' => 'required',
-            'parent_id' => 'nullable|exists:categories,id',
+            'orderIndex' => 'required',
+            'parentId' => 'nullable|exists:categories,id',
         ];
     }
 
@@ -35,7 +35,7 @@ class ValidateStoreRequest extends FormRequest
     private function isDuplicate(): bool
     {
         return Category::whereName($this->get('name'))
-            ->whereParentId($this->get('parent_id'))
+            ->whereParentId($this->get('parentId'))
             ->where('id', '<>', optional($this->route('category'))->id)
             ->exists();
     }
