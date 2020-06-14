@@ -18,10 +18,20 @@ class Category extends Model
         return $this->belongsTo(self::class, 'parent_id');
     }
 
+    public function recursiveParents()
+    {
+        return $this->parent()->with('parent');
+    }
+
     public function subcategories()
     {
         return $this->hasMany(self::class, 'parent_id')
-            ->orderBy('order_index')
+            ->orderBy('order_index');
+    }
+
+    public function recursiveSubcategories()
+    {
+        return $this->subcategories()
             ->with('subcategories');
     }
 
@@ -57,8 +67,8 @@ class Category extends Model
     public static function tree()
     {
         return self::topLevel()
-            ->orderBy('order_index')
-            ->with('subcategories')->get();
+            ->with('recursiveSubcategories')
+            ->get();
     }
 
     public function isParent()

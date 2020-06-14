@@ -13,7 +13,14 @@ class Category extends JsonResource
             'name' => $this->name,
             'orderIndex' => $this->order_index,
             'selected' => false,
-            'subcategories' => self::collection($this->whenLoaded('subcategories')),
+            'subcategories' => self::collection($this->subcategories()),
         ];
+    }
+
+    private function subcategories()
+    {
+        return $this->relationLoaded('subcategories')
+            ? $this->subcategories
+            : $this->whenLoaded('recursiveSubcategories');
     }
 }
