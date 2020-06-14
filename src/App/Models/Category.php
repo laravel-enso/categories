@@ -4,6 +4,7 @@ namespace LaravelEnso\Categories\App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use LaravelEnso\Helpers\App\Traits\AvoidsDeletionConflicts;
 use LaravelEnso\Tables\App\Traits\TableCache;
 
@@ -69,6 +70,26 @@ class Category extends Model
         return self::topLevel()
             ->with('recursiveSubcategories')
             ->get();
+    }
+
+    public function currentAndBelowIds()
+    {
+        if (! $this->relationLoaded('recursiveSubcategories')) {
+            $this->load('recursiveSubcategories');
+        }
+
+        return $this->flatten($this->recursiveSubcategories)
+            ->prepend($this->id)->toArray();
+    }
+
+    private function flatten(Collection $categories)
+    {
+        return $categories->reduce(
+            fn ($flatten, $category) => $flatten->push($category->id)
+                ->when($category->recursiveSubcategories->isNotEmpty(), fn ($flatten) => $flatten
+                    ->concat($this->flatten($category->recursiveSubcategories))),
+            new Collection()
+        );
     }
 
     public function isParent()
