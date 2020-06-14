@@ -18,7 +18,7 @@ class Category extends Model
         return $this->belongsTo(self::class, 'parent_id');
     }
 
-    public function recursiveParents()
+    public function recursiveParent()
     {
         return $this->parent()->with('parent');
     }
