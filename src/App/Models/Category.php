@@ -5,12 +5,13 @@ namespace LaravelEnso\Categories\App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use LaravelEnso\DynamicMethods\App\Traits\Relations;
 use LaravelEnso\Helpers\App\Traits\AvoidsDeletionConflicts;
 use LaravelEnso\Tables\App\Traits\TableCache;
 
 class Category extends Model
 {
-    use AvoidsDeletionConflicts, TableCache;
+    use AvoidsDeletionConflicts, Relations, TableCache;
 
     protected $fillable = ['id', 'parent_id', 'name', 'order_index'];
 

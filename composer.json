@@ -10,10 +10,10 @@
         "category-management"
     ],
     "homepage": "https://github.com/laravel-enso/categories",
-    "type": "library",
     "license": "MIT",
     "require": {
         "laravel-enso/core": "4.8.*",
+        "laravel-enso/dynamic-methods": "1.1.*",
         "laravel-enso/forms": "3.4.*",
         "laravel-enso/migrator": "1.1.*",
         "laravel-enso/permissions": "3.4.*",
