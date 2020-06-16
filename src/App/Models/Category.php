@@ -73,14 +73,14 @@ class Category extends Model
             ->get();
     }
 
-    public function currentAndBelowIds()
+    public function currentAndBelowIds(): Collection
     {
         if (! $this->relationLoaded('recursiveSubcategories')) {
             $this->load('recursiveSubcategories');
         }
 
         return $this->flatten($this->recursiveSubcategories)
-            ->prepend($this->id)->toArray();
+            ->prepend($this->id);
     }
 
     private function flatten(Collection $categories)
