@@ -17,7 +17,7 @@ class Category extends Model
 
     public function parent()
     {
-        return $this->belongsTo(self::class, 'parent_id');
+        return $this->belongsTo(static::class, 'parent_id');
     }
 
     public function recursiveParent()
@@ -27,7 +27,7 @@ class Category extends Model
 
     public function subcategories()
     {
-        return $this->hasMany(self::class, 'parent_id')
+        return $this->hasMany(static::class, 'parent_id')
             ->orderBy('order_index');
     }
 
