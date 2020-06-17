@@ -73,6 +73,20 @@ class Category extends Model
             ->get();
     }
 
+    public function parentTree(): Collection
+    {
+        $tree = new Collection();
+        $category = $this;
+        $tree->push($category);
+
+        while ($category->parent !== null) {
+            $tree->prepend($category->parent);
+            $category = $category->parent;
+        }
+
+        return $tree;
+    }
+
     public function currentAndBelowIds(): Collection
     {
         if (! $this->relationLoaded('recursiveSubcategories')) {
