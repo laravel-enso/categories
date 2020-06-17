@@ -73,16 +73,23 @@ class Category extends Model
             ->get();
     }
 
+    public function getParentTreeAttribute()
+    {
+        return $this->parentTree();
+    }
+
     public function parentTree(): Collection
     {
         $tree = new Collection();
         $category = $this;
+        $category->attributes['parent'] = $category->recursiveParent;
         $tree->push($category);
 
-        while ($category->parent !== null) {
-            $tree->prepend($category->parent);
-            $category = $category->parent;
+        while ($category = $category->parent) {
+            $tree->prepend($category);
         }
+
+        unset($this->recursiveParent);
 
         return $tree;
     }
