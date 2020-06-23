@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use LaravelEnso\Categories\App\Models\Category;
+use LaravelEnso\Categories\Models\Category;
 
 $factory->define(Category::class, fn (Faker $faker) => [
     'parent_id' => null,

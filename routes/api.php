@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web', 'auth', 'core'])
     ->group(function () {
-        Route::namespace('LaravelEnso\Categories\App\Http\Controllers')
+        Route::namespace('LaravelEnso\Categories\Http\Controllers')
             ->prefix('api/administration/categories')
             ->as('administration.categories.')
             ->group(function () {

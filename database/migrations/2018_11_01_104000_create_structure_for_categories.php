@@ -1,10 +1,10 @@
 <?php
 
-use LaravelEnso\Migrator\App\Database\Migration;
+use LaravelEnso\Migrator\Database\Migration;
 
 class CreateStructureForCategories extends Migration
 {
-    protected $permissions = [
+    protected array $permissions = [
         ['name' => 'administration.categories.index', 'description' => 'Show index for categories', 'is_default' => false],
         ['name' => 'administration.categories.store', 'description' => 'Store a new category', 'is_default' => false],
         ['name' => 'administration.categories.move', 'description' => 'Move category', 'is_default' => false],
@@ -12,9 +12,9 @@ class CreateStructureForCategories extends Migration
         ['name' => 'administration.categories.destroy', 'description' => 'Delete category', 'is_default' => false],
     ];
 
-    protected $menu = [
+    protected array $menu = [
         'name' => 'Categories', 'icon' => 'tags', 'route' => 'administration.categories.index', 'order_index' => 90, 'has_children' => false,
     ];
 
-    protected $parentMenu = 'Administration';
+    protected string $parentMenu = 'Administration';
 }

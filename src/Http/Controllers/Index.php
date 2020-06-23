@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\Categories\App\Http\Controllers;
+namespace LaravelEnso\Categories\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use LaravelEnso\Categories\App\Http\Resources\Category as Resource;
-use LaravelEnso\Categories\App\Models\Category;
+use LaravelEnso\Categories\Http\Resources\Category as Resource;
+use LaravelEnso\Categories\Models\Category;
 
 class Index extends Controller
 {

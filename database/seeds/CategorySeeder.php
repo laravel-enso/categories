@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use LaravelEnso\Categories\App\Models\Category;
+use LaravelEnso\Categories\Models\Category;
 
 class CategorySeeder extends Seeder
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\Categories\App\Http\Requests;
+namespace LaravelEnso\Categories\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use LaravelEnso\Categories\App\Models\Category;
-use LaravelEnso\Helpers\App\Traits\MapsRequestKeys;
+use LaravelEnso\Categories\Models\Category;
+use LaravelEnso\Helpers\Traits\MapsRequestKeys;
 
 class ValidateStoreRequest extends FormRequest
 {
