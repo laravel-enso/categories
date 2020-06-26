@@ -24,11 +24,11 @@ class AppServiceProvider extends ServiceProvider
     private function publish()
     {
         $this->publishes([
-            __DIR__.'/config' => config_path('laravel-enso'),
+            __DIR__.'/../config' => config_path('laravel-enso'),
         ], 'categories-config');
 
         $this->publishes([
-            __DIR__.'/database/factories' => database_path('factories'),
+            __DIR__.'/../database/factories' => database_path('factories'),
         ], ['categories-factories', 'enso-factories']);
     }
 }
