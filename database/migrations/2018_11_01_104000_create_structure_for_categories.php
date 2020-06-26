@@ -16,5 +16,5 @@ class CreateStructureForCategories extends Migration
         'name' => 'Categories', 'icon' => 'tags', 'route' => 'administration.categories.index', 'order_index' => 90, 'has_children' => false,
     ];
 
-    protected string $parentMenu = 'Administration';
+    protected ?string $parentMenu = 'Administration';
 }
