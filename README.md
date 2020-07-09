@@ -1,6 +1,6 @@
 # Categories
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1a05a5276a5c4f6db3cb05db2086bbab)](https://www.codacy.com/app/laravel-enso/categories?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/categories&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/76e662038a9e41e0b0bf87bc92042a24)](https://www.codacy.com/gh/laravel-enso/categories?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/categories&amp;utm_campaign=Badge_Grade) 
 [![StyleCI](https://github.styleci.io/repos/151941399/shield?branch=master)](https://github.styleci.io/repos/151941399)
 [![License](https://poser.pugx.org/laravel-enso/categories/license)](https://packagist.org/packages/laravel-enso/categories)
 [![Total Downloads](https://poser.pugx.org/laravel-enso/categories/downloads)](https://packagist.org/packages/laravel-enso/categories)
