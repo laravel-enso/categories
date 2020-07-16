@@ -13,7 +13,7 @@ trait ValidateLevel
             $newLevel = Category::find($this->get('parentId'))->level() + 1;
 
             if ($newLevel > Config::get('enso.categories.maxNestingLevel')) {
-                $validator->after(fn($validator) => $validator->errors()
+                $validator->after(fn ($validator) => $validator->errors()
                     ->add('parentId', 'level is more than maxLevel'));
             }
         }

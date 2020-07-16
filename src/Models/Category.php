@@ -121,6 +121,8 @@ class Category extends Model
 
     public function level()
     {
-        return 1 + ($this->parent ? $this->parent->level() : 0);
+        return $this->parent_id
+            ? $this->parent->level() + 1
+            : 0;
     }
 }
