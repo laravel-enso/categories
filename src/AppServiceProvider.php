@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        $this->mergeConfigFrom(__DIR__.'/../config/categories.php', 'categories');
+        $this->mergeConfigFrom(__DIR__.'/../config/categories.php', 'enso.categories');
 
         return $this;
     }
@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     private function publish()
     {
         $this->publishes([
-            __DIR__.'/../config' => config_path('laravel-enso'),
+            __DIR__.'/../config' => config_path('enso'),
         ], 'categories-config');
 
         $this->publishes([

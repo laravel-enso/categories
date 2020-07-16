@@ -3,6 +3,7 @@
 namespace LaravelEnso\Categories\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\MissingValue;
 
 class Category extends JsonResource
 {
@@ -19,8 +20,12 @@ class Category extends JsonResource
 
     private function subcategories()
     {
-        return $this->relationLoaded('subcategories')
+        $subcategories = $this->relationLoaded('subcategories')
             ? $this->subcategories
             : $this->whenLoaded('recursiveSubcategories');
+
+        return ! $subcategories || $subcategories instanceof MissingValue
+            ? []
+            : $subcategories;
     }
 }
