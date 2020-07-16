@@ -8,7 +8,7 @@ use LaravelEnso\Helpers\Traits\MapsRequestKeys;
 
 class ValidateStoreRequest extends FormRequest
 {
-    use MapsRequestKeys;
+    use MapsRequestKeys, ValidateLevel;
 
     public function authorize()
     {
@@ -30,6 +30,8 @@ class ValidateStoreRequest extends FormRequest
             $validator->after(fn ($validator) => $validator
                 ->errors()->add('name', 'duplicate'));
         }
+
+        $this->validateLevel($validator);
     }
 
     private function isDuplicate(): bool

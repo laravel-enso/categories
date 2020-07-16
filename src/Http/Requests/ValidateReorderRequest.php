@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ValidateReorderRequest extends FormRequest
 {
+    use ValidateLevel;
+
     public function authorize()
     {
         return true;
@@ -17,5 +19,10 @@ class ValidateReorderRequest extends FormRequest
             'parentId' => 'nullable|exists:categories,id',
             'newIndex' => 'required',
         ];
+    }
+
+    public function withValidator($validator)
+    {
+        $this->validateLevel($validator);
     }
 }

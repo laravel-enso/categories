@@ -118,4 +118,9 @@ class Category extends Model
     {
         return $this->subcategories()->count() > 0;
     }
+
+    public function level()
+    {
+        return 1 + ($this->parent ? $this->parent->level() : 0);
+    }
 }
