@@ -10,9 +10,9 @@ trait ValidateLevel
     protected function validateLevel($validator)
     {
         if ($this->get('parentId') !== null) {
-            $newLevel = Category::find($this->get('parentId'))->level() + 1;
+            $currentLevel = Category::find($this->get('parentId'))->level();
 
-            if ($newLevel > Config::get('enso.categories.maxNestingLevel')) {
+            if ($currentLevel >= Config::get('enso.categories.maxNestingLevel')) {
                 $validator->after(fn ($validator) => $validator->errors()
                     ->add('parentId', 'level is more than maxLevel'));
             }
