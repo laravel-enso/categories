@@ -14,7 +14,7 @@ trait ValidateLevel
 
             if ($currentLevel >= Config::get('enso.categories.maxNestingLevel')) {
                 $validator->after(fn ($validator) => $validator->errors()
-                    ->add('parentId', 'level is more than maxLevel'));
+                    ->add('parentId', 'The nesting level is higher than allowed'));
             }
         }
     }
