@@ -22,7 +22,7 @@ class Category extends Model
 
     public function recursiveParent()
     {
-        return $this->parent()->with('parent');
+        return $this->parent()->with('recursiveParent');
     }
 
     public function subcategories()
@@ -34,7 +34,7 @@ class Category extends Model
     public function recursiveSubcategories()
     {
         return $this->subcategories()
-            ->with('subcategories');
+            ->with('recursiveSubcategories');
     }
 
     public function scopeTopLevel(Builder $query)
