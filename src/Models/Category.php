@@ -91,23 +91,11 @@ class Category extends Model
         return $tree;
     }
 
-    public function currentAndBelowIds(): Collection
+    public function flattenCurrentAndBelow(): Collection
     {
-        if (! $this->relationLoaded('recursiveSubcategories')) {
-            $this->load('recursiveSubcategories');
-        }
-
-        return $this->flatten($this->recursiveSubcategories)
-            ->prepend($this->id);
-    }
-
-    private function flatten(Collection $categories)
-    {
-        return $categories->reduce(
-            fn ($flatten, $category) => $flatten->push($category->id)
-                ->when($category->recursiveSubcategories->isNotEmpty(), fn ($flatten) => $flatten
-                    ->concat($this->flatten($category->recursiveSubcategories))),
-            new Collection()
+        return (new Collection([$this]))->concat(
+            $this->recursiveSubcategories->map(fn ($cat) => $cat->flattenCurrentAndBelow())
+                ->flatten()
         );
     }
 
@@ -121,5 +109,11 @@ class Category extends Model
         return $this->parent_id
             ? $this->parent->level() + 1
             : 0;
+    }
+
+    public function depth(): int
+    {
+        return $this->recursiveSubcategories->map(fn ($category) => $category->depth() + 1)
+            ->max() ?? 0;
     }
 }
