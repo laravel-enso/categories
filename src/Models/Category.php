@@ -91,19 +91,14 @@ class Category extends Model
         return $tree;
     }
 
-    public function currentAndBelowIds(): Collection
-    {
-        return $this->flatten()->map->id;
-    }
-
-    public function flatten(): Collection
+    public function flattenCurrentAndBelow(): Collection
     {
         if (! $this->relationLoaded('recursiveSubcategories')) {
             $this->load('recursiveSubcategories');
         }
 
         return (new Collection([$this]))->concat(
-            $this->recursiveSubcategories->map(fn($cat) => $cat->flatten())
+            $this->recursiveSubcategories->map(fn($cat) => $cat->flattenCurrentAndBelow())
                 ->flatten()
         );
     }

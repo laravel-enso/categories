@@ -43,9 +43,9 @@ class CategoryTest extends TestCase
     /** @test */
     public function can_get_flatten()
     {
-        $this->assertEquals([1, 2, 3], $this->parent->flatten()->map->id->toArray());
-        $this->assertEquals([2, 3], $this->middle->flatten()->map->id->toArray());
-        $this->assertEquals([3], $this->leaf->flatten()->map->id->toArray());
+        $this->assertEquals([1, 2, 3], $this->parent->flattenCurrentAndBelow()->pluck('id')->toArray());
+        $this->assertEquals([2, 3], $this->middle->flattenCurrentAndBelow()->pluck('id')->toArray());
+        $this->assertEquals([3], $this->leaf->flattenCurrentAndBelow()->pluck('id')->toArray());
     }
 
     /** @test */
