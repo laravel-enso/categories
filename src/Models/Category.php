@@ -98,7 +98,7 @@ class Category extends Model
         }
 
         return (new Collection([$this]))->concat(
-            $this->recursiveSubcategories->map(fn($cat) => $cat->flattenCurrentAndBelow())
+            $this->recursiveSubcategories->map(fn ($cat) => $cat->flattenCurrentAndBelow())
                 ->flatten()
         );
     }
