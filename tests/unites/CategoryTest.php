@@ -1,10 +1,7 @@
 <?php
 
-use Faker\Factory;
-use Faker\Generator as Faker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use LaravelEnso\Categories\Models\Category;
-use LaravelEnso\Core\Models\User;
 use Tests\TestCase;
 
 class CategoryTest extends TestCase
