@@ -94,9 +94,7 @@ class Category extends Model
     public function flattenCurrentAndBelow(): Collection
     {
         return (new Collection([$this]))->concat(
-            $this->recursiveSubcategories
-                ->sortBy('order_index')
-                ->map(fn ($cat) => $cat->flattenCurrentAndBelow())
+            $this->recursiveSubcategories->map(fn ($cat) => $cat->flattenCurrentAndBelow())
                 ->flatten()
         );
     }
