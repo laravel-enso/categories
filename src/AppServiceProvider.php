@@ -29,6 +29,6 @@ class AppServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../database/factories' => database_path('factories'),
-        ], ['categories-factories', 'enso-factories']);
+        ], ['categories-factory', 'enso-factories']);
     }
 }
