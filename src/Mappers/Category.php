@@ -21,7 +21,7 @@ class Category
         return $this->categories;
     }
 
-    private function load(): Category
+    private function load(): self
     {
         $this->categories = Model::all()
             ->mapWithKeys(fn (Model $category) => [$category->id => $category])
