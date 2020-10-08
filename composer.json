@@ -12,7 +12,7 @@
     "homepage": "https://github.com/laravel-enso/categories",
     "license": "MIT",
     "require": {
-        "laravel-enso/core": "^5.0",
+        "laravel-enso/core": "^6.0",
         "laravel-enso/dynamic-methods": "^2.0",
         "laravel-enso/helpers": "^2.0",
         "laravel-enso/forms": "^4.0",
@@ -23,7 +23,9 @@
     },
     "autoload": {
         "psr-4": {
-            "LaravelEnso\\Categories\\": "src/"
+            "LaravelEnso\\Categories\\": "src/",
+            "LaravelEnso\\Categories\\Database\\Factories\\": "database/factories/",
+            "LaravelEnso\\Categories\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "extra": {

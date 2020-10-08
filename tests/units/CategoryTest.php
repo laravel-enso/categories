@@ -16,9 +16,9 @@ class CategoryTest extends TestCase
     {
         parent::setUp();
 
-        $this->parent = factory(Category::class)->create();
-        $this->middle = factory(Category::class)->create(['parent_id' => $this->parent->id]);
-        $this->leaf = factory(Category::class)->create(['parent_id' => $this->middle->id]);
+        $this->parent = Category::factory()->create();
+        $this->middle = Category::factory()->create(['parent_id' => $this->parent->id]);
+        $this->leaf = Category::factory()->create(['parent_id' => $this->middle->id]);
     }
 
     /** @test */
