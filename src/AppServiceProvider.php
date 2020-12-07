@@ -3,12 +3,14 @@
 namespace LaravelEnso\Categories;
 
 use Illuminate\Support\ServiceProvider;
+use LaravelEnso\Categories\Models\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
         $this->load()
+            ->mapMorph()
             ->publish();
     }
 
@@ -17,6 +19,13 @@ class AppServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->mergeConfigFrom(__DIR__.'/../config/categories.php', 'enso.categories');
+
+        return $this;
+    }
+
+    private function mapMorph(): self
+    {
+        Category::morphMap();
 
         return $this;
     }

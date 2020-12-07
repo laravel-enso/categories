@@ -6,6 +6,7 @@ use LaravelEnso\Categories\Http\Controllers\Index;
 use LaravelEnso\Categories\Http\Controllers\Move;
 use LaravelEnso\Categories\Http\Controllers\Store;
 use LaravelEnso\Categories\Http\Controllers\Update;
+use LaravelEnso\Categories\Http\Controllers\Upload;
 
 Route::middleware(['api', 'auth', 'core'])
     ->group(function () {
@@ -17,5 +18,6 @@ Route::middleware(['api', 'auth', 'core'])
                 Route::patch('{category}/move', Move::class)->name('move');
                 Route::patch('{category}', Update::class)->name('update');
                 Route::delete('{category}', Destroy::class)->name('destroy');
+                Route::post('{category}/upload', Upload::class)->name('upload');
             });
     });
