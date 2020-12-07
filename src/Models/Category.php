@@ -3,6 +3,7 @@
 namespace LaravelEnso\Categories\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use LaravelEnso\DynamicMethods\Traits\Abilities;
@@ -11,7 +12,7 @@ use LaravelEnso\Tables\Traits\TableCache;
 
 class Category extends Model
 {
-    use AvoidsDeletionConflicts, Abilities, TableCache;
+    use AvoidsDeletionConflicts, Abilities, HasFactory, TableCache;
 
     protected $guarded = ['id'];
 
