@@ -9,12 +9,15 @@ class Category extends JsonResource
 {
     public function toArray($request)
     {
+        $file = $this->relationLoaded('file') && $this->file ? $this->file : null;
+
         return [
             'id' => $this->id,
             'name' => $this->name,
             'orderIndex' => $this->order_index,
             'selected' => false,
             'subcategories' => self::collection($this->subcategories()),
+            'fileId' => optional($file)->id,
         ];
     }
 

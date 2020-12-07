@@ -7,14 +7,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use LaravelEnso\DynamicMethods\Traits\Abilities;
+use LaravelEnso\Files\Contracts\Attachable;
+use LaravelEnso\Files\Traits\HasFile;
 use LaravelEnso\Helpers\Traits\AvoidsDeletionConflicts;
+use LaravelEnso\Helpers\Traits\CascadesMorphMap;
 use LaravelEnso\Tables\Traits\TableCache;
 
-class Category extends Model
+class Category extends Model implements Attachable
 {
-    use AvoidsDeletionConflicts, Abilities, HasFactory, TableCache;
+    use AvoidsDeletionConflicts, Abilities, HasFactory, HasFile, TableCache, CascadesMorphMap;
 
     protected $guarded = ['id'];
+
+    protected $folder = 'brands';
 
     public function parent()
     {
@@ -66,8 +71,11 @@ class Category extends Model
     {
         return self::topLevel()
             ->orderBy('order_index')
-            ->with(['recursiveSubcategories' => fn ($categories) => $categories
-                ->orderBy('order_index'), ])
+            ->with([
+                'file',
+                'recursiveSubcategories' => fn ($categories) => $categories
+                    ->orderBy('order_index')
+            ])
             ->get();
     }
 
