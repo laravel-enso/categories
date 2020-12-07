@@ -14,11 +14,9 @@ class UploadPermisssion implements MigratesStructure
         ['name' => 'administration.categories.upload', 'description' => 'Upload logo for a category', 'is_default' => false],
     ];
 
-    protected array $roles;
-
-    public function __construct()
+    public function roles(): array
     {
-        $this->roles = Permission::whereName('administration.categories.update')
+        return Permission::whereName('administration.categories.update')
             ->first()->roles->pluck('name')
             ->toArray();
     }
