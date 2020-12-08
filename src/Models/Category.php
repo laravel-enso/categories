@@ -81,14 +81,11 @@ class Category extends Model
     {
         $tree = new Collection();
         $category = $this;
-        $category->attributes['parent'] = $category->recursiveParent;
         $tree->push($category);
 
-        while ($category = $category->parent) {
+        if ($category = $category->parent) {
             $tree->prepend($category);
         }
-
-        unset($this->recursiveParent);
 
         return $tree;
     }
