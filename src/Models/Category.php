@@ -103,12 +103,15 @@ class Category extends Model
         return $tree;
     }
 
-
     public function parents(): LazyCollection
     {
         return LazyCollection::make(function () {
-            for ($parent = $this->parent; optional($parent)->parent_id !== null; $parent = $parent->parent) {
+            $parent = $this->parent;
+
+            while ($parent !== null) {
                 yield $parent;
+
+                $parent = $parent->parent;
             }
         });
     }

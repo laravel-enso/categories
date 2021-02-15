@@ -7,17 +7,7 @@ use LaravelEnso\Categories\Models\Category as Model;
 
 class Category
 {
-    private static $instance;
     private Collection $categories;
-
-    private function __construct()
-    {
-    }
-
-    public static function getInstance(): self
-    {
-        return static::$instance ??= new static();
-    }
 
     public function load(): Collection
     {
@@ -32,8 +22,7 @@ class Category
             ->each(fn (Model $category) => $category
                 ->setRelation('subcategories', new Collection())
                 ->setRelation('recursiveSubcategories', new Collection())
-            )
-        ;
+            );
 
         return $this->initParents();
     }
