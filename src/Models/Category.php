@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Collection;
-use Illuminate\Support\LazyCollection;
 use LaravelEnso\Categories\Scopes\Ordered;
 use LaravelEnso\DynamicMethods\Traits\Abilities;
 use LaravelEnso\Helpers\Traits\AvoidsDeletionConflicts;
@@ -50,7 +49,7 @@ class Category extends Model
         $oldParentId = $this->parent_id;
 
         $order = $orderIndex >= $this->order_index
-        && $oldParentId === $parentId
+            && $oldParentId === $parentId
             ? 'asc'
             : 'desc';
 
@@ -93,10 +92,6 @@ class Category extends Model
         }
 
         return $tree;
-    }
-
-    public static function filterTree()
-    {
     }
 
     public function flattenCurrentAndBelowIds(): Collection
