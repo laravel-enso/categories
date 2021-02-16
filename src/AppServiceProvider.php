@@ -7,10 +7,6 @@ use LaravelEnso\Categories\Mappers\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public $singletons = [
-        'category-mapper' => Category::class,
-    ];
-
     public function boot()
     {
         $this->load()
