@@ -3,7 +3,6 @@
 namespace LaravelEnso\Categories;
 
 use Illuminate\Support\ServiceProvider;
-use LaravelEnso\Categories\Mappers\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
