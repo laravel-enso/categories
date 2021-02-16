@@ -71,7 +71,7 @@ class Category extends Model
         self::whereParentId($parentId)
             ->orderBy('updated_at', $order)
             ->get()
-            ->each(fn($group, $index) => $group
+            ->each(fn ($group, $index) => $group
                 ->update(['order_index' => $index + 1]));
     }
 
@@ -108,7 +108,7 @@ class Category extends Model
     public function flattenCurrentAndBelow(): Collection
     {
         return $this->recursiveSubcategories
-            ->map(fn($cat) => $cat->flattenCurrentAndBelow())
+            ->map(fn ($cat) => $cat->flattenCurrentAndBelow())
             ->flatten()
             ->prepend($this);
     }
@@ -128,7 +128,7 @@ class Category extends Model
     public function depth(): int
     {
         return $this->recursiveSubcategories
-                ->map(fn($category) => $category->depth() + 1)
+                ->map(fn ($category) => $category->depth() + 1)
                 ->max() ?? 0;
     }
 
