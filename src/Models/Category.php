@@ -10,13 +10,16 @@ use Illuminate\Support\Collection;
 use LaravelEnso\Categories\Scopes\Ordered;
 use LaravelEnso\DynamicMethods\Traits\Abilities;
 use LaravelEnso\Helpers\Traits\AvoidsDeletionConflicts;
+use LaravelEnso\Rememberable\Traits\Rememberable;
 use LaravelEnso\Tables\Traits\TableCache;
 
 class Category extends Model
 {
-    use AvoidsDeletionConflicts, Abilities, HasFactory, TableCache;
+    use AvoidsDeletionConflicts, Abilities, HasFactory, Rememberable, TableCache;
 
     protected $guarded = ['id'];
+
+    protected $rememberableKeys = ['id', 'name'];
 
     public function parent(): Relation
     {
@@ -123,8 +126,8 @@ class Category extends Model
     public function depth(): int
     {
         return $this->recursiveSubcategories
-                ->map(fn ($category) => $category->depth() + 1)
-                ->max() ?? 0;
+            ->map(fn ($category) => $category->depth() + 1)
+            ->max() ?? 0;
     }
 
     protected static function booted()
