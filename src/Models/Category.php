@@ -88,13 +88,13 @@ class Category extends Model
     {
         $category = $this;
 
-        $tree = Collection::wrap($category);
+        $tree = new Collection();
 
         while ($category = $category->recursiveParent) {
             $tree->prepend($category);
         }
 
-        return $tree;
+        return $tree->map->setRelation('recursiveParent', null);
     }
 
     public function flattenCurrentAndBelowIds(): Collection
