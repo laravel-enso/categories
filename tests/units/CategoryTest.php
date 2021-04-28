@@ -48,8 +48,9 @@ class CategoryTest extends TestCase
     /** @test */
     public function can_get_parentTree()
     {
-        $this->assertEquals([1], $this->parent->parentTree()->map->id->toArray());
-        $this->assertEquals([1, 2], $this->middle->parentTree()->map->id->toArray());
-        $this->assertEquals([1, 2, 3], $this->leaf->parentTree()->map->id->toArray());
+
+        $this->assertEquals([], $this->parent->parentTree()->map->id->toArray());
+        $this->assertEquals([1], $this->middle->parentTree()->map->id->toArray());
+        $this->assertEquals([1, 2], $this->leaf->parentTree()->map->id->toArray());
     }
 }
