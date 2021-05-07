@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Config;
 use LaravelEnso\Categories\Scopes\Ordered;
 use LaravelEnso\DynamicMethods\Traits\Abilities;
 use LaravelEnso\Helpers\Traits\AvoidsDeletionConflicts;
@@ -45,6 +46,15 @@ class Category extends Model
     public function scopeTopLevel(Builder $query)
     {
         return $query->whereNull('parent_id');
+    }
+
+    public function scopeContains(Builder $query, string $items)
+    {
+        $query->whereHas($items);
+
+        $this->nestedContains($query, $items);
+
+        return $query;
     }
 
     public function move(int $orderIndex, ?int $parentId)
@@ -133,5 +143,14 @@ class Category extends Model
     protected static function booted()
     {
         static::addGlobalScope(new Ordered());
+    }
+
+    private function nestedContains(Builder $query, string $items, int $level = 0)
+    {
+        $maxLevel = Config::get('enso.categories.maxNestingLevel');
+
+        $query->when($level < $maxLevel, fn ($query) => $query
+            ->orWhereHas('subcategories', fn ($query) => $query->whereHas($items)
+                ->orWhere(fn ($query) => $this->nestedContains($query, $items, $level + 1))));
     }
 }
