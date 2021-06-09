@@ -8,14 +8,12 @@ use LaravelEnso\Categories\Http\Controllers\Store;
 use LaravelEnso\Categories\Http\Controllers\Update;
 
 Route::middleware(['api', 'auth', 'core'])
+    ->prefix('api/administration/categories')
+    ->as('administration.categories.')
     ->group(function () {
-        Route::prefix('api/administration/categories')
-            ->as('administration.categories.')
-            ->group(function () {
-                Route::get('', Index::class)->name('index');
-                Route::post('', Store::class)->name('store');
-                Route::patch('{category}/move', Move::class)->name('move');
-                Route::patch('{category}', Update::class)->name('update');
-                Route::delete('{category}', Destroy::class)->name('destroy');
-            });
+        Route::get('', Index::class)->name('index');
+        Route::post('', Store::class)->name('store');
+        Route::patch('{category}/move', Move::class)->name('move');
+        Route::patch('{category}', Update::class)->name('update');
+        Route::delete('{category}', Destroy::class)->name('destroy');
     });

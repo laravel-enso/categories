@@ -38,7 +38,7 @@ class ValidateStoreRequest extends FormRequest
     {
         return Category::whereName($this->get('name'))
             ->whereParentId($this->get('parentId'))
-            ->where('id', '<>', optional($this->route('category'))->id)
+            ->where('id', '<>', $this->route('category')?->id)
             ->exists();
     }
 }
