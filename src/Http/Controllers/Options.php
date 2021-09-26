@@ -11,6 +11,4 @@ class Options extends Controller
     use OptionsBuilder;
 
     protected $model = Category::class;
-
-    protected $queryAttributes = ['name', 'appellative', 'nin', 'phone'];
 }
