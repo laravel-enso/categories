@@ -6,6 +6,7 @@ class CreateStructureForCategories extends Migration
 {
     protected array $permissions = [
         ['name' => 'administration.categories.index', 'description' => 'Show index for categories', 'is_default' => false],
+        ['name' => 'administration.categories.options', 'description' => 'Get options for select', 'is_default' => false],
         ['name' => 'administration.categories.store', 'description' => 'Store a new category', 'is_default' => false],
         ['name' => 'administration.categories.move', 'description' => 'Move category', 'is_default' => false],
         ['name' => 'administration.categories.update', 'description' => 'Update category', 'is_default' => false],
