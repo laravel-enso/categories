@@ -1,0 +1,22 @@
+{
+    "timeout": 3000,
+    "queue": "heavy",
+    "sheets": [
+        {
+            "name": "categories",
+            "chunkSize": 1500,
+            "importerClass": "LaravelEnso\\Categories\\Imports\\Importers\\CategoriesImport",
+            "validatorClass": "LaravelEnso\\Categories\\Imports\\Validators\\CategoriesImportValidator",
+            "columns": [
+                {
+                    "name": "parent",
+                    "validations": "nullable"
+                },
+                {
+                    "name": "category",
+                    "validations": "required"
+                }
+            ]
+        }
+    ]
+}
