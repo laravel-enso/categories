@@ -1,6 +1,6 @@
 {
     "timeout": 3000,
-    "queue": "heavy",
+    "queue": "sync",
     "sheets": [
         {
             "name": "categories",
