@@ -81,6 +81,7 @@ class Category extends Model
     public static function reorder(?int $parentId, string $order = 'asc')
     {
         self::whereParentId($parentId)
+            ->orderBy('order_index', 'asc')
             ->orderBy('updated_at', $order)
             ->get()
             ->each(fn ($group, $index) => $group
