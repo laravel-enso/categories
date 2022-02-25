@@ -5,7 +5,7 @@ namespace LaravelEnso\Categories\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use LaravelEnso\Categories\Models\Category;
 
-class ValidateUpdateRequest extends FormRequest
+class ValidateUpdate extends FormRequest
 {
     public function authorize()
     {

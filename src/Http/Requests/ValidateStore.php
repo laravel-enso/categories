@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use LaravelEnso\Categories\Models\Category;
 use LaravelEnso\Helpers\Traits\MapsRequestKeys;
 
-class ValidateStoreRequest extends FormRequest
+class ValidateStore extends FormRequest
 {
     use MapsRequestKeys, ValidateLevel;
 

@@ -9,7 +9,6 @@ use LaravelEnso\Helpers\Services\Obj;
 
 class CategoriesImportValidator extends Validator
 {
-
     public function run(Obj $row, DataImport $import)
     {
         if ($this->exists($row)) {
@@ -26,5 +25,4 @@ class CategoriesImportValidator extends Validator
             ->whereHas('parent', fn ($parent) => $parent->whereName($parentName))
             ->exists();
     }
-
 }

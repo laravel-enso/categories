@@ -4,7 +4,7 @@ namespace LaravelEnso\Categories\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ValidateReorderRequest extends FormRequest
+class ValidateReorder extends FormRequest
 {
     use ValidateLevel;
 
