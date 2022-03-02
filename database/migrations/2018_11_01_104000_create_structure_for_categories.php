@@ -2,7 +2,7 @@
 
 use LaravelEnso\Migrator\Database\Migration;
 
-class CreateStructureForCategories extends Migration
+return new class extends Migration
 {
     protected array $permissions = [
         ['name' => 'administration.categories.index', 'description' => 'Show index for categories', 'is_default' => false],
@@ -18,4 +18,4 @@ class CreateStructureForCategories extends Migration
     ];
 
     protected ?string $parentMenu = 'Administration';
-}
+};
