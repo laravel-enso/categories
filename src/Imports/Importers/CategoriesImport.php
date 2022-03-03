@@ -4,12 +4,12 @@ namespace LaravelEnso\Categories\Imports\Importers;
 
 use LaravelEnso\Categories\Models\Category;
 use LaravelEnso\DataImport\Contracts\Importable;
-use LaravelEnso\DataImport\Models\DataImport;
+use LaravelEnso\DataImport\Models\Import;
 use LaravelEnso\Helpers\Services\Obj;
 
 class CategoriesImport implements Importable
 {
-    public function run(Obj $row, DataImport $import)
+    public function run(Obj $row, Import $import)
     {
         Category::factory()->create([
             'parent_id' => $this->parentId($row),
