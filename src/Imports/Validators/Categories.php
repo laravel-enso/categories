@@ -3,13 +3,13 @@
 namespace LaravelEnso\Categories\Imports\Validators;
 
 use LaravelEnso\Categories\Models\Category;
-use LaravelEnso\DataImport\Models\DataImport;
+use LaravelEnso\DataImport\Models\Import;
 use LaravelEnso\DataImport\Services\Validators\Validator;
 use LaravelEnso\Helpers\Services\Obj;
 
-class CategoriesImportValidator extends Validator
+class Categories extends Validator
 {
-    public function run(Obj $row, DataImport $import)
+    public function run(Obj $row, Import $import)
     {
         if ($this->exists($row)) {
             $this->addError(__('category exits'));

@@ -5,8 +5,8 @@
         {
             "name": "categories",
             "chunkSize": 1500,
-            "importerClass": "LaravelEnso\\Categories\\Imports\\Importers\\CategoriesImport",
-            "validatorClass": "LaravelEnso\\Categories\\Imports\\Validators\\CategoriesImportValidator",
+            "importerClass": "LaravelEnso\\Categories\\Imports\\Importers\\Categories",
+            "validatorClass": "LaravelEnso\\Categories\\Imports\\Validators\\Categories",
             "columns": [
                 {
                     "name": "parent",
