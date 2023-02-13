@@ -12,7 +12,7 @@ class Categories extends Validator
     public function run(Obj $row, Import $import)
     {
         if ($this->exists($row)) {
-            $this->addError(__('category exits'));
+            $this->addError(__('category exists'));
         }
     }
 
