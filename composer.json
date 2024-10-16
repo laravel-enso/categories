@@ -14,7 +14,7 @@
     "require": {
         "laravel-enso/core": "^10.0",
         "laravel-enso/dynamic-methods": "^3.0",
-        "laravel-enso/helpers": "^2.0",
+        "laravel-enso/helpers": "^3.0",
         "laravel-enso/forms": "^4.0",
         "laravel-enso/migrator": "^2.1",
         "laravel-enso/permissions": "^5.0",
