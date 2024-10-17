@@ -10,13 +10,13 @@ return new class extends Migration {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedInteger('parent_id')->index()->nullable();
+            $table->integer('parent_id')->unsigned()->index()->nullable();
             $table->foreign('parent_id')->references('id')->on('categories')
                 ->onUpdate('restrict')->onDelete('restrict');
 
             $table->string('name')->index();
 
-            $table->unsignedInteger('order_index');
+            $table->integer('order_index')->unsigned();
 
             $table->timestamps();
 
