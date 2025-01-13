@@ -21,6 +21,7 @@ class ValidateStore extends FormRequest
             'name' => ['required', 'max:255'],
             'orderIndex' => 'required',
             'parentId' => 'nullable|exists:categories,id',
+            'logo' => 'nullable|image'
         ];
     }
 
@@ -32,6 +33,11 @@ class ValidateStore extends FormRequest
         }
 
         $this->validateLevel($validator);
+
+        if (($this->filled('parent_id') || $this->filled('levelOne')) && $this->filled('file_id')) {
+            $validator->errors()
+                ->add('levelOne', "You can't upload a file to a non parent");
+        }
     }
 
     private function isDuplicate(): bool

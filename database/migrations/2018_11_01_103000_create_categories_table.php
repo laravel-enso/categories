@@ -13,6 +13,9 @@ return new class extends Migration {
             $table->integer('parent_id')->unsigned()->index()->nullable();
             $table->foreign('parent_id')->references('id')->on('categories')
                 ->onUpdate('restrict')->onDelete('restrict');
+            $table->bigInteger('file_id')->unsigned()->nullable()->unique();
+            $table->foreign('file_id')->references('id')->on('files')
+                ->onUpdate('restrict')->onDelete('restrict');
 
             $table->string('name')->index();
 

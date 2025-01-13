@@ -10,11 +10,12 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use LaravelEnso\Categories\Scopes\Ordered;
 use LaravelEnso\DynamicMethods\Traits\Abilities;
+use LaravelEnso\Files\Contracts\Attachable;
 use LaravelEnso\Helpers\Traits\AvoidsDeletionConflicts;
 use LaravelEnso\Rememberable\Traits\Rememberable;
 use LaravelEnso\Tables\Traits\TableCache;
 
-class Category extends Model
+class Category extends Model implements Attachable
 {
     use AvoidsDeletionConflicts, Abilities, HasFactory, Rememberable, TableCache;
 

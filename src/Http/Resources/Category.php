@@ -15,6 +15,7 @@ class Category extends JsonResource
             'orderIndex' => $this->order_index,
             'selected' => false,
             'items' => self::collection($this->subcategories()),
+            'fileId' => $this->relationLoaded('file') ? $this->file?->id : null,
         ];
     }
 
