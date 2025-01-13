@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Config;
 use LaravelEnso\Categories\Scopes\Ordered;
 use LaravelEnso\DynamicMethods\Traits\Abilities;
 use LaravelEnso\Files\Contracts\Attachable;
+use LaravelEnso\Files\Models\File;
 use LaravelEnso\Helpers\Traits\AvoidsDeletionConflicts;
 use LaravelEnso\Rememberable\Traits\Rememberable;
 use LaravelEnso\Tables\Traits\TableCache;
@@ -154,5 +155,10 @@ class Category extends Model implements Attachable
         $query->when($level < $maxLevel, fn ($query) => $query
             ->orWhereHas('subcategories', fn ($query) => $query->whereHas($items)
                 ->orWhere(fn ($query) => $this->nestedContains($query, $items, $level + 1))));
+    }
+
+    public function file(): Relation
+    {
+        return $this->belongsTo(File::class);
     }
 }
