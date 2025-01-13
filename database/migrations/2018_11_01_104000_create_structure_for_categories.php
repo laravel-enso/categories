@@ -11,6 +11,7 @@ return new class extends Migration
         ['name' => 'administration.categories.move', 'description' => 'Move category', 'is_default' => false],
         ['name' => 'administration.categories.update', 'description' => 'Update category', 'is_default' => false],
         ['name' => 'administration.categories.destroy', 'description' => 'Delete category', 'is_default' => false],
+        ['name' => 'administration.categories.upload', 'description' => 'Upload logo for a parent category', 'is_default' => false]
     ];
 
     protected array $menu = [
