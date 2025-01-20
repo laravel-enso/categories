@@ -17,4 +17,14 @@ class ValidateUpload extends FormRequest
     {
         return ['logo' => 'required|image'];
     }
+
+    public function withValidator($validator)
+    {
+        $category = $this->route('category');
+
+        if (($category?->parent_id || $category->recursiveParent?->recursiveParent?->id)) {
+            $validator->after(fn ($validator) => $validator->errors()
+                ->add('file_id', "You can't upload a file to a non parent"));
+        }
+    }
 }
