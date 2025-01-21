@@ -1,5 +1,5 @@
 {
-    "routePrefix": "categories",
+    "routePrefix": "administration.categories",
     "tabs": true,
     "sections": [
         {
@@ -13,7 +13,7 @@
                     "meta": {
                         "custom": true,
                         "type": "select",
-                        "source": "categories.options",
+                        "source": "administration.categories.options",
                         "params": {
                             "parent_id": null
                         }
@@ -27,7 +27,7 @@
                         "custom": true,
                         "type": "select",
                         "multiple": false,
-                        "source": "categories.options"
+                        "source": "administration.categories.options"
                     }
                 },
                 {
