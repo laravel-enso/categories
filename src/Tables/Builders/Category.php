@@ -13,7 +13,7 @@ class Category implements Table
     public function query(): Builder
     {
         return Model::with('recursiveParent:id,parent_id,name')
-            ->select(['id', 'name', 'parent_id', 'unspsc']);
+            ->select(['id', 'name', 'parent_id']);
     }
 
     public function templatePath(): string

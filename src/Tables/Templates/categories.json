@@ -33,15 +33,6 @@
             ]
         },
         {
-            "label": "Unspsc",
-            "name": "unspsc",
-            "data": "unspsc",
-            "meta": [
-                "sortable",
-                "searchable"
-            ]
-        },
-        {
             "label": "Label",
             "name": "label",
             "data": "label",
