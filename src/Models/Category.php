@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
+use LaravelEnso\Categories\Http\Resources\Label;
 use LaravelEnso\Categories\Scopes\Ordered;
 use LaravelEnso\DynamicMethods\Traits\Abilities;
 use LaravelEnso\Files\Contracts\Attachable;
@@ -23,6 +24,11 @@ class Category extends Model implements Attachable
     protected $guarded = ['id'];
 
     protected $rememberableKeys = ['id', 'name'];
+
+    public function label()
+    {
+        return new Label($this);
+    }
 
     public function parent(): Relation
     {
