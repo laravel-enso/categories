@@ -11,5 +11,7 @@ class Update extends Controller
     public function __invoke(ValidateUpdate $request, Category $category)
     {
         $category->update($request->validated());
+
+        return ['message' => __('The category has been successfully updated')];
     }
 }

@@ -1,0 +1,45 @@
+{
+    "name": "Category",
+    "routePrefix": "administration.categories",
+    "crtNo": true,
+    "buttons": [
+        "create",
+        "edit",
+        "destroy"
+    ],
+    "columns": [
+        {
+            "label": "Level 1",
+            "name": "levelOne",
+            "data": "recursive_parent",
+            "meta": [
+                "slot"
+            ]
+        },
+        {
+            "label": "Level 2",
+            "name": "levelTwo",
+            "data": "recursive_parent",
+            "meta": [
+                "slot"
+            ]
+        },
+        {
+            "label": "Name",
+            "name": "name",
+            "data": "name",
+            "meta": [
+                "searchable"
+            ]
+        },
+        {
+            "label": "Label",
+            "name": "label",
+            "data": "label",
+            "meta": [
+                "method",
+                "slot"
+            ]
+        }
+    ]
+}

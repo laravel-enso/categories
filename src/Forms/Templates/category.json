@@ -1,0 +1,69 @@
+{
+    "routePrefix": "administration.categories",
+    "tabs": true,
+    "sections": [
+        {
+            "tab": "General",
+            "columns": 2,
+            "fields": [
+                {
+                    "label": "Level 1",
+                    "name": "levelOne",
+                    "value": null,
+                    "meta": {
+                        "custom": true,
+                        "type": "select",
+                        "source": "administration.categories.options",
+                        "params": {
+                            "parent_id": null
+                        }
+                    }
+                },
+                {
+                    "label": "Level 2",
+                    "name": "parent_id",
+                    "value": null,
+                    "meta": {
+                        "custom": true,
+                        "type": "select",
+                        "multiple": false,
+                        "source": "administration.categories.options"
+                    }
+                },
+                {
+                    "label": "Name",
+                    "name": "name",
+                    "value": null,
+                    "meta": {
+                        "type": "input",
+                        "content": "text"
+                    }
+                },
+                {
+                    "label": "Order Index",
+                    "name": "order_index",
+                    "value": null,
+                    "meta": {
+                        "type": "input",
+                        "content": "text"
+                    }
+                }
+            ]
+        },
+        {
+            "tab" : "Image",
+            "hidden": true,
+            "columns": 1,
+            "fields": [
+                {
+                    "label": "Image",
+                    "name": "file_id",
+                    "value": null,
+                    "meta": {
+                        "custom": true
+                    }
+                }
+            ]
+        }
+    ]
+}
