@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Categories\Http\Controllers;
+namespace LaravelEnso\Categories\Http\Controllers\Image;
 
 use Illuminate\Routing\Controller;
 use LaravelEnso\Categories\Http\Requests\ValidateUpload;
