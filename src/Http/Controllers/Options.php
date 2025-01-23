@@ -16,7 +16,6 @@ class Options extends Controller
 
     public function query(): Builder
     {
-        return Category::with('recursiveParent')
-            ->doesntHave('subcategories');
+        return Category::with('recursiveParent');
     }
 }
