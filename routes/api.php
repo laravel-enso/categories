@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use LaravelEnso\Categories\Http\Controllers\Create;
 use LaravelEnso\Categories\Http\Controllers\Destroy;
 use LaravelEnso\Categories\Http\Controllers\Edit;
+use LaravelEnso\Categories\Http\Controllers\Image\Destroy as ImageDestroy;
+use LaravelEnso\Categories\Http\Controllers\Image\Upload;
 use LaravelEnso\Categories\Http\Controllers\Index;
 use LaravelEnso\Categories\Http\Controllers\InitTable;
 use LaravelEnso\Categories\Http\Controllers\Move;
@@ -11,7 +13,6 @@ use LaravelEnso\Categories\Http\Controllers\Options;
 use LaravelEnso\Categories\Http\Controllers\Store;
 use LaravelEnso\Categories\Http\Controllers\TableData;
 use LaravelEnso\Categories\Http\Controllers\Update;
-use LaravelEnso\Categories\Http\Controllers\Upload;
 
 Route::middleware(['api', 'auth', 'core'])
     ->prefix('api/administration/categories')
@@ -28,4 +29,5 @@ Route::middleware(['api', 'auth', 'core'])
         Route::patch('{category}/move', Move::class)->name('move');
         Route::patch('{category}', Update::class)->name('update');
         Route::delete('{category}', Destroy::class)->name('destroy');
+        Route::delete('image/{category}', ImageDestroy::class)->name('image.destroy');
     });
