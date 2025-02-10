@@ -11,8 +11,14 @@ class Store extends Controller
 {
     public function __invoke(ValidateStore $request, Category $category)
     {
-        $category->fill($request->validated())->save();
+        $category->fill($request->validated());
+        $category->order_index ??= Category::nextIndex($request->get('parent_id'));
+        $category->save();
 
-        return ['item' => new Resource($category->load('subcategories'))];
+        return [
+            'message' => __('The category was successfully created'),
+            'redirect' => 'administration.categories.edit',
+            'param' => ['category' => $category->id],
+        ];
     }
 }

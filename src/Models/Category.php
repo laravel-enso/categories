@@ -167,4 +167,10 @@ class Category extends Model implements Attachable
     {
         return $this->belongsTo(File::class);
     }
+
+    public static function nextIndex(?int $parentId = null): int
+    {
+        return static::query()->whereParentId($parentId)
+                ->max('order_index') + 1;
+    }
 }

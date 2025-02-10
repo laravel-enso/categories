@@ -10,7 +10,9 @@ class Update extends Controller
 {
     public function __invoke(ValidateUpdate $request, Category $category)
     {
-        $category->update($request->validated());
+        $category->fill($request->validated());
+        $category->order_index ??= Category::nextIndex($request->get('parent_id'));
+        $category->save();
 
         return ['message' => __('The category has been successfully updated')];
     }

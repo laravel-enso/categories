@@ -18,27 +18,34 @@ class ValidateStore extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:255'],
-            'orderIndex' => 'required',
-            'parentId' => 'nullable|exists:categories,id',
+            'name' => 'required|string',
+            'order_index' => 'nullable',
+            'parent_id' => 'nullable',
         ];
     }
 
     public function withValidator($validator)
     {
-        if ($this->isDuplicate()) {
-            $validator->after(fn ($validator) => $validator
-                ->errors()->add('name', 'duplicate'));
-        }
-
-        $this->validateLevel($validator);
+        $validator->after(fn ($validator) => $this->customValidations($validator));
     }
 
-    private function isDuplicate(): bool
+    public function customValidations($validator)
     {
-        return Category::whereName($this->get('name'))
-            ->whereParentId($this->get('parentId'))
-            ->where('id', '<>', $this->route('category')?->id)
-            ->exists();
+
+        if (
+            $this->filled('parent_id')
+            && $this->get('parent_id') === $this->route('category')?->id
+        ) {
+            $validator->errors()
+                ->add('parent_id', "You can't link a parent to itself");
+        }
+
+        if (
+            $this->filled('levelOne')
+            && $this->get('levelOne') === $this->route('category')?->id
+        ) {
+            $validator->errors()
+                ->add('levelOne', "You can't link a level one to itself");
+        }
     }
 }
