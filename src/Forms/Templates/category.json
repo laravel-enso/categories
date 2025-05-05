@@ -47,14 +47,7 @@
                         "type": "input",
                         "content": "text"
                     }
-                }
-            ]
-        },
-        {
-            "tab" : "Image",
-            "hidden": true,
-            "columns": 1,
-            "fields": [
+                },
                 {
                     "label": "Image",
                     "name": "file_id",
