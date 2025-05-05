@@ -2,13 +2,13 @@
 
 namespace LaravelEnso\Categories\Tables\Builders;
 
-use LaravelEnso\Categories\Models\Category as Model;
 use Illuminate\Database\Eloquent\Builder;
+use LaravelEnso\Categories\Models\Category as Model;
 use LaravelEnso\Tables\Contracts\Table;
 
 class Category implements Table
 {
-    private const TemplatePath = __DIR__.'/../Templates/categories.json';
+    protected $path = __DIR__.'/../Templates/categories.json';
 
     public function query(): Builder
     {
@@ -18,6 +18,6 @@ class Category implements Table
 
     public function templatePath(): string
     {
-        return self::TemplatePath;
+        return $this->path;
     }
 }

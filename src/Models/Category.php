@@ -12,12 +12,15 @@ use LaravelEnso\Categories\Http\Resources\Label;
 use LaravelEnso\Categories\Scopes\Ordered;
 use LaravelEnso\DynamicMethods\Traits\Abilities;
 use LaravelEnso\Files\Contracts\Attachable;
+use LaravelEnso\Files\Contracts\OptimizesImages;
+use LaravelEnso\Files\Contracts\PublicFile;
+use LaravelEnso\Files\Contracts\ResizesImages;
 use LaravelEnso\Files\Models\File;
 use LaravelEnso\Helpers\Traits\AvoidsDeletionConflicts;
 use LaravelEnso\Rememberable\Traits\Rememberable;
 use LaravelEnso\Tables\Traits\TableCache;
 
-class Category extends Model implements Attachable
+class Category extends Model implements Attachable, PublicFile, ResizesImages, OptimizesImages
 {
     use AvoidsDeletionConflicts, Abilities, HasFactory, Rememberable, TableCache;
 
@@ -49,6 +52,21 @@ class Category extends Model implements Attachable
     {
         return $this->subcategories()
             ->with('recursiveSubcategories');
+    }
+
+    public function image(): Relation
+    {
+        return $this->belongsTo(File::class);
+    }
+
+    public function imageWidth(): ?int
+    {
+        return 200;
+    }
+
+    public function imageHeight(): ?int
+    {
+        return 200;
     }
 
     public function scopeTopLevel(Builder $query)
@@ -99,7 +117,7 @@ class Category extends Model implements Attachable
     public static function tree(): Collection
     {
         return self::topLevel()
-            ->with('recursiveSubcategories')
+            ->with('recursiveSubcategories', 'image')
             ->get();
     }
 
@@ -163,14 +181,9 @@ class Category extends Model implements Attachable
                 ->orWhere(fn ($query) => $this->nestedContains($query, $items, $level + 1))));
     }
 
-    public function file(): Relation
-    {
-        return $this->belongsTo(File::class);
-    }
-
     public static function nextIndex(?int $parentId = null): int
     {
         return static::query()->whereParentId($parentId)
-                ->max('order_index') + 1;
+            ->max('order_index') + 1;
     }
 }

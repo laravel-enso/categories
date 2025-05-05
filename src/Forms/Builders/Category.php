@@ -27,8 +27,7 @@ class Category
 
         return $this->form
             ->value('levelOne', $levelOne?->id)
-            ->showTab('Image')
-            ->value('file_id', $category->file?->id)
+            ->show('image_id')
             ->edit($category);
     }
 

@@ -11,14 +11,14 @@ class Upload extends Controller
 {
     public function __invoke(ValidateUpload $request, Category $category)
     {
-        $oldFile = $category->file;
+        $oldFile = $category->image;
 
-        $file = File::upload($category, $request->file('logo'));
+        $file = File::upload($category, $request->file('image'));
 
-        $category->file()->associate($file)->save();
+        $category->image()->associate($file)->save();
 
         $oldFile?->delete();
 
-        return ['fileId' => $category->file->id];
+        return ['fileId' => $file->id];
     }
 }

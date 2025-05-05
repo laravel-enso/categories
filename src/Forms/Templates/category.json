@@ -50,9 +50,10 @@
                 },
                 {
                     "label": "Image",
-                    "name": "file_id",
+                    "name": "image_id",
                     "value": null,
                     "meta": {
+                        "hidden": true,
                         "custom": true
                     }
                 }

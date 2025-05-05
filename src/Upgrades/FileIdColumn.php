@@ -11,15 +11,24 @@ class FileIdColumn implements MigratesTable
 {
     public function isMigrated(): bool
     {
-        return Table::hasColumn('categories', 'file_id');
+        return Table::hasColumn('categories', 'image_id');
     }
 
     public function migrateTable(): void
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->bigInteger('file_id')->unsigned()->nullable()->unique();
-            $table->foreign('file_id')->references('id')->on('files')
-                ->onUpdate('restrict')->onDelete('restrict');
-        });
+        if (! Table::hasColumn('categories', 'file_id')) {
+            Schema::table('categories', function (Blueprint $table) {
+                $table->bigInteger('image_id')->unsigned()->nullable()->after('parent_id')->unique();
+                $table->foreign('image_id')->references('id')->on('files')
+                    ->onUpdate('restrict')->onDelete('restrict');
+            });
+        } else {
+            Schema::table('categories', function (Blueprint $table) {
+                $table->dropForeign(['file_id']);
+                $table->renameColumn('file_id', 'image_id');
+                $table->foreign('image_id')->references('id')->on('files')
+                    ->onUpdate('restrict')->onDelete('restrict');
+            });
+        }
     }
 }

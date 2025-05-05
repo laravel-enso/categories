@@ -3,28 +3,29 @@
 namespace LaravelEnso\Categories\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use LaravelEnso\Categories\Models\Category;
-use LaravelEnso\Helpers\Traits\MapsRequestKeys;
 
 class ValidateUpload extends FormRequest
 {
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
-    public function rules()
+    public function rules(): array
     {
-        return ['logo' => 'required|image'];
+        return ['image' => 'required|image'];
     }
 
-    public function withValidator($validator)
+    public function after($validator): array
     {
-        $category = $this->route('category');
+        return [fn ($validator) => $this->allowed($validator)];
+    }
 
-        if (($category?->parent_id || $category->recursiveParent?->recursiveParent?->id)) {
-            $validator->after(fn ($validator) => $validator->errors()
-                ->add('file_id', "You can't upload a file to a non parent"));
+    private function allowed($validator): void
+    {
+        if ($this->route('category')->parent_id) {
+            $validator->errors()
+                ->add('image_id', 'Only top level categories can have images');
         }
     }
 }

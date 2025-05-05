@@ -4,6 +4,7 @@ namespace LaravelEnso\Categories\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\MissingValue;
+use LaravelEnso\Files\Http\Resources\Url;
 
 class Category extends JsonResource
 {
@@ -15,7 +16,7 @@ class Category extends JsonResource
             'orderIndex' => $this->order_index,
             'selected' => false,
             'items' => self::collection($this->subcategories()),
-            'fileId' => $this->relationLoaded('file') ? $this->file?->id : null,
+            'image' => new Url($this->whenLoaded('image')),
         ];
     }
 
