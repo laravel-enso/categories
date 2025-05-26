@@ -33,8 +33,8 @@ class Category implements Table, CustomFilter
 
     private function filterLevel($query, Obj $params): void
     {
-        $query->when($params->get('level') === 1, fn ($query)=> $query->whereNull('parent_id'))
-            ->when($params->get('level') === 2, fn ($query)=> $query->whereHas('recursiveParent'));
+        $query->when($params->get('level') === 1, fn ($query) => $query->whereNull('parent_id'))
+            ->when($params->get('level') === 2, fn ($query) => $query->whereHas('recursiveParent'));
     }
 
     public function templatePath(): string
