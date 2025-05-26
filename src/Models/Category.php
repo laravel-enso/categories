@@ -18,6 +18,8 @@ use LaravelEnso\Files\Contracts\ResizesImages;
 use LaravelEnso\Files\Models\File;
 use LaravelEnso\Helpers\Traits\AvoidsDeletionConflicts;
 use LaravelEnso\Rememberable\Traits\Rememberable;
+use LaravelEnso\Products\Models\Picture;
+use LaravelEnso\Files\Http\Resources\Url;
 use LaravelEnso\Tables\Traits\TableCache;
 
 class Category extends Model implements Attachable, PublicFile, ResizesImages, OptimizesImages
@@ -57,6 +59,11 @@ class Category extends Model implements Attachable, PublicFile, ResizesImages, O
     public function image(): Relation
     {
         return $this->belongsTo(File::class);
+    }
+
+    public function pictureUrl(): string
+    {
+        return (new Url($this->image))?->url ?? Picture::defaultUrl();
     }
 
     public function imageWidth(): ?int
