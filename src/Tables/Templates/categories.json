@@ -9,6 +9,15 @@
     ],
     "columns": [
         {
+            "label": "Pic",
+            "name": "pictureUrl",
+            "data": "pictureUrl",
+            "meta": [
+                "slot",
+                "method"
+            ]
+        },
+        {
             "label": "Level 1",
             "name": "levelOne",
             "data": "recursive_parent",
