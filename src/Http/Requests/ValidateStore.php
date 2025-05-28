@@ -48,5 +48,11 @@ class ValidateStore extends FormRequest
             $validator->errors()
                 ->add('levelOne', "You can't link a level one to itself");
         }
+
+        $levelOne = $this->route('category')->recursiveParent?->recursiveParent;
+
+        if ($this->boolean('is_featured') &&  $this->filled('parent_id') && $levelOne){
+            $validator->errors()->add('is_featured', 'Only level 1 and level 2 categories can be featured.');
+        }
     }
 }
