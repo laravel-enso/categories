@@ -18,6 +18,7 @@ class IsFeaturedColumn implements MigratesTable
     {
         Schema::table('categories', function (Blueprint $table) {
             $table->boolean('is_featured')->default(false)
+                ->index()
                 ->after('order_index');
         });
 
