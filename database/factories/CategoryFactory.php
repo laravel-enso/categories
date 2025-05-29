@@ -15,6 +15,7 @@ class CategoryFactory extends Factory
             'parent_id' => null,
             'name' => $this->faker->unique()->word,
             'order_index' => Category::max('order_index') + 1,
+            'is_featured' => $this->faker->boolean(),
         ];
     }
 }
