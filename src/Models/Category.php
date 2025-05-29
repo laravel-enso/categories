@@ -174,6 +174,16 @@ class Category extends Model implements Attachable, PublicFile, ResizesImages, O
             ->max() ?? 0;
     }
 
+    public function scopeFeatured(Builder $query)
+    {
+        return $query->whereIsFeatured(true);
+    }
+
+    protected function casts(): array
+    {
+        return ['is_featured' => 'boolean'];
+    }
+
     protected static function booted()
     {
         static::addGlobalScope(new Ordered());

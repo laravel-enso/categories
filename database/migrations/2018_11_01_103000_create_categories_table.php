@@ -21,7 +21,7 @@ return new class extends Migration {
 
             $table->integer('order_index')->unsigned();
 
-            $table->boolean('is_featured');
+            $table->boolean('is_featured')->index();
 
             $table->timestamps();
 

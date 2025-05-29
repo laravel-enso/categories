@@ -3,7 +3,6 @@
 namespace LaravelEnso\Categories\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use LaravelEnso\Categories\Models\Category;
 use LaravelEnso\Helpers\Traits\MapsRequestKeys;
 
 class ValidateStore extends FormRequest
@@ -21,7 +20,7 @@ class ValidateStore extends FormRequest
             'name' => 'required|string',
             'order_index' => 'nullable',
             'parent_id' => 'nullable',
-            'is_featured' => 'boolean',
+            'is_featured' => 'required|boolean',
         ];
     }
 
@@ -32,27 +31,14 @@ class ValidateStore extends FormRequest
 
     public function customValidations($validator)
     {
-
-        if (
-            $this->filled('parent_id')
+        $linkedToItself = $this->filled('parent_id')
             && $this->get('parent_id') === $this->route('category')?->id
-        ) {
+            || $this->filled('levelOne')
+            && $this->get('levelOne') === $this->route('category')?->id;
+
+        if ($linkedToItself) {
             $validator->errors()
-                ->add('parent_id', "You can't link a parent to itself");
-        }
-
-        if (
-            $this->filled('levelOne')
-            && $this->get('levelOne') === $this->route('category')?->id
-        ) {
-            $validator->errors()
-                ->add('levelOne', "You can't link a level one to itself");
-        }
-
-        $levelOne = $this->route('category')->recursiveParent?->recursiveParent;
-
-        if ($this->boolean('is_featured') &&  $this->filled('parent_id') && $levelOne){
-            $validator->errors()->add('is_featured', 'Only level 1 and level 2 categories can be featured.');
+                ->add('parent_id', "You can't link a category to itself");
         }
     }
 }

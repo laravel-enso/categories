@@ -16,6 +16,7 @@ class ValidateUpdate extends FormRequest
     {
         return [
             'name' => 'required|max:255',
+            'is_featured' => 'required|boolean',
         ];
     }
 
