@@ -21,6 +21,8 @@ return new class extends Migration {
 
             $table->integer('order_index')->unsigned();
 
+            $table->boolean('is_featured');
+
             $table->timestamps();
 
             $table->unique(['parent_id', 'name']);

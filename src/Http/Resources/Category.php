@@ -14,6 +14,7 @@ class Category extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'orderIndex' => $this->order_index,
+            'isFeatured' => $this->is_featured,
             'selected' => false,
             'items' => self::collection($this->subcategories()),
             'image' => new Url($this->whenLoaded('image')),
