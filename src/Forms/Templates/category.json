@@ -49,6 +49,15 @@
                     }
                 },
                 {
+                    "label": "Featured",
+                    "name": "is_featured",
+                    "value": false,
+                    "meta": {
+                        "type": "input",
+                        "content": "checkbox"
+                    }
+                },
+                {
                     "label": "Image",
                     "name": "image_id",
                     "value": null,
