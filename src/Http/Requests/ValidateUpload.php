@@ -13,7 +13,7 @@ class ValidateUpload extends FormRequest
 
     public function rules(): array
     {
-        return ['image' => 'required|image'];
+        return ['image' => 'required|image:allow_svg'];
     }
 
     public function after($validator): array
