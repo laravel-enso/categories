@@ -63,7 +63,11 @@ class Category extends Model implements Attachable, PublicFile, ResizesImages, O
 
     public function pictureUrl(): string
     {
-        return (new Url($this->image))?->url ?? Picture::defaultUrl();
+        if (! $this->image) {
+            return Picture::defaultUrl();
+        }
+
+        return (new Url($this->image))->resolve()['url'] ?? Picture::defaultUrl();
     }
 
     public function imageWidth(): ?int
