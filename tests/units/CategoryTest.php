@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use LaravelEnso\Categories\Models\Category;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CategoryTest extends TestCase
 {
@@ -21,7 +22,7 @@ class CategoryTest extends TestCase
         $this->leaf = Category::factory()->create(['parent_id' => $this->middle->id]);
     }
 
-    /** @test */
+    #[Test]
     public function can_get_level()
     {
         $this->assertEquals(0, $this->parent->level());
@@ -29,7 +30,7 @@ class CategoryTest extends TestCase
         $this->assertEquals(2, $this->leaf->level());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_depth()
     {
         $this->assertEquals(2, $this->parent->depth());
@@ -37,7 +38,7 @@ class CategoryTest extends TestCase
         $this->assertEquals(0, $this->leaf->depth());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_flatten()
     {
         $this->assertEquals([1, 2, 3], $this->parent->flattenCurrentAndBelowIds()->toArray());
@@ -45,7 +46,7 @@ class CategoryTest extends TestCase
         $this->assertEquals([3], $this->leaf->flattenCurrentAndBelowIds()->toArray());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_parentTree()
     {
 
