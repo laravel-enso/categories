@@ -19,7 +19,7 @@ class ValidateStore extends FormRequest
         return [
             'name' => 'required|string',
             'order_index' => 'nullable',
-            'parent_id' => 'nullable',
+            'parent_id' => 'nullable|exists:categories,id',
             'is_featured' => 'required|boolean',
         ];
     }
