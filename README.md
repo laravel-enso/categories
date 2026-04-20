@@ -122,6 +122,40 @@ $options = Category::with('recursiveParent')
 
 The package ships the backend routes and payload builders used by the Enso categories administration UI.
 
+## API
+
+### HTTP routes
+
+- `GET api/administration/categories`
+- `GET api/administration/categories/create`
+- `GET api/administration/categories/{category}/edit`
+- `GET api/administration/categories/options`
+- `POST api/administration/categories`
+- `GET api/administration/categories/initTable`
+- `GET api/administration/categories/tableData`
+- `POST api/administration/categories/{category}/upload`
+- `PATCH api/administration/categories/{category}/move`
+- `PATCH api/administration/categories/{category}`
+- `DELETE api/administration/categories/{category}`
+- `DELETE api/administration/categories/image/{category}`
+
+## Depends On
+
+Required Enso packages:
+
+- [`laravel-enso/core`](https://docs.laravel-enso.com/backend/core.html) [↗](https://github.com/laravel-enso/core)
+- [`laravel-enso/data-import`](https://docs.laravel-enso.com/backend/data-import.html) [↗](https://github.com/laravel-enso/data-import)
+- [`laravel-enso/dynamic-methods`](https://docs.laravel-enso.com/backend/dynamic-methods.html) [↗](https://github.com/laravel-enso/dynamic-methods)
+- [`laravel-enso/files`](https://docs.laravel-enso.com/backend/files.html) [↗](https://github.com/laravel-enso/files)
+- [`laravel-enso/forms`](https://docs.laravel-enso.com/backend/forms.html) [↗](https://github.com/laravel-enso/forms)
+- [`laravel-enso/helpers`](https://docs.laravel-enso.com/backend/helpers.html) [↗](https://github.com/laravel-enso/helpers)
+- [`laravel-enso/migrator`](https://docs.laravel-enso.com/backend/migrator.html) [↗](https://github.com/laravel-enso/migrator)
+- [`laravel-enso/permissions`](https://docs.laravel-enso.com/backend/permissions.html) [↗](https://github.com/laravel-enso/permissions)
+- [`laravel-enso/products`](https://docs.laravel-enso.com/backend/products.html) [↗](https://git.xtelecom.ro/laravel-enso/products)
+- [`laravel-enso/rememberable`](https://docs.laravel-enso.com/backend/rememberable.html) [↗](https://github.com/laravel-enso/rememberable)
+- [`laravel-enso/select`](https://docs.laravel-enso.com/backend/select.html) [↗](https://github.com/laravel-enso/select)
+- [`laravel-enso/tables`](https://docs.laravel-enso.com/backend/tables.html) [↗](https://github.com/laravel-enso/tables)
+
 Companion frontend package:
 
 - [`@enso-ui/categories`](https://docs.laravel-enso.com/frontend/categories.html) [↗](https://github.com/enso-ui/categories)
