@@ -3,17 +3,20 @@
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use LaravelEnso\Categories\Models\Category;
+use LaravelEnso\Helpers\Traits\EnsuresTestingFolder;
 use LaravelEnso\Users\Models\User;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class CategoriesUploadTest extends TestCase
 {
-    use RefreshDatabase;
+    use EnsuresTestingFolder, RefreshDatabase;
 
     protected function setUp(): void
     {
         parent::setUp();
+
+        $this->ensureTestingFolder();
 
         $this->seed()
             ->actingAs(User::first());
