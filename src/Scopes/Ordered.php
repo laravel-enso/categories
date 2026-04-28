@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Scope;
 
 class Ordered implements Scope
 {
-    public function apply(Builder $builder, Model $model)
+    public function apply(Builder $builder, Model $model): void
     {
-        $builder->orderBy('categories.order_index');
+        $builder->orderBy($model->qualifyColumn('order_index'));
     }
 }
