@@ -3,11 +3,11 @@
 namespace LaravelEnso\Categories\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use LaravelEnso\Helpers\Traits\MapsRequestKeys;
+use LaravelEnso\Helpers\Traits\ToSnakeCase;
 
 class ValidateStore extends FormRequest
 {
-    use MapsRequestKeys, ValidateLevel;
+    use ToSnakeCase, ValidateLevel;
 
     public function authorize()
     {
@@ -33,8 +33,8 @@ class ValidateStore extends FormRequest
     {
         $linkedToItself = $this->filled('parent_id')
             && $this->get('parent_id') === $this->route('category')?->id
-            || $this->filled('levelOne')
-            && $this->get('levelOne') === $this->route('category')?->id;
+            || $this->filled('level_one')
+            && $this->get('level_one') === $this->route('category')?->id;
 
         if ($linkedToItself) {
             $validator->errors()
